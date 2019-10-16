@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    private Player player;
+    
     private bool activated = false;
-    private SpriteRenderer sprite;
 
-    [SerializeField]
-    private Sprite activeSprite;
-    [SerializeField]
-    private AudioSource checkpoint;
+    private Player player;
+    private SpriteRenderer sr;
+    
+    [SerializeField] private Sprite activeSprite;
+    [SerializeField] private AudioSource checkpoint;
     
     private void Start()
     {
         player = FindObjectOfType<Player>();
-        sprite = GetComponent<SpriteRenderer>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,7 +27,7 @@ public class Checkpoint : MonoBehaviour
         {
             player.LastCheckpoint = gameObject;
             activated = true;
-            sprite.sprite = activeSprite;
+            sr.sprite = activeSprite;
             if(checkpoint!=null)
                 checkpoint.Play();
             player.NStars++;

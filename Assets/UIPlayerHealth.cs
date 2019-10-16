@@ -19,8 +19,8 @@ public class UIPlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        image.fillAmount = (playerHealth.CurrentHealth / playerHealth.MaxHealth);
-        text.text = playerHealth.CurrentHealth.ToString() + " / " + playerHealth.MaxHealth.ToString();
+        image.fillAmount = (playerHealth.CurrentHealth / playerHealth.GetMaxHealth());
+        text.text = playerHealth.CurrentHealth.ToString() + " / " + playerHealth.GetMaxHealth().ToString();
     }
 
 }

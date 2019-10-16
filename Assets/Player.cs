@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDie
+public class Player : EntityBase, IDie
 {
     private bool partOrbiting = false;
     public bool PartOrbiting
@@ -35,17 +35,12 @@ public class Player : MonoBehaviour, IDie
     private float respawnTimer = 2.0f;
 
     private Health health;
-
-
+    
     [SerializeField] private AudioSource pickup;
 
-    private void OnEnable()
+    private void Awake()
     {
-        
-    }
-    private void OnDisable()
-    {
-        
+        base.Init();
     }
 
     // Start is called before the first frame update

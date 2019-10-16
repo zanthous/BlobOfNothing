@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class BreakableWood : MonoBehaviour
 {
-
     [SerializeField] private AudioSource open;
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Collider2D c = collision.contacts[0].collider;

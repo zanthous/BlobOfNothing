@@ -40,9 +40,4 @@ public class EnemyManager : MonoBehaviour
         Debug.Assert(enemies.Contains(g));
         enemies.Remove(g);
     }
-    
-    void Update()
-    {
-        
-    }
 }

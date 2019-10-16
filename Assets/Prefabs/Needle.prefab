@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7158970448199621921}
   - component: {fileID: 604026357870661726}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: opendestroywhatever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,14 +136,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6008977069962219469}
+  - component: {fileID: 6444802996385535606}
+  - component: {fileID: 6008977069962219457}
   - component: {fileID: 6008977069962219458}
   - component: {fileID: 6008977069962219459}
   - component: {fileID: 6008977069962219456}
-  - component: {fileID: 6008977069962219457}
-  - component: {fileID: 6008977069962219468}
   - component: {fileID: 7734984836562336964}
-  - component: {fileID: 3074289232795930938}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Needle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,6 +164,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 225}
+--- !u!114 &6444802996385535606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6008977069962219462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a887c8fca3c0d204399cb2ed139aef16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6008977069962219457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6008977069962219462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10c23128e6348544a113d9ac2406b82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  free: 0
+  slot: 5
 --- !u!212 &6008977069962219458
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4937,33 +4962,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &6008977069962219457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6008977069962219462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d10c23128e6348544a113d9ac2406b82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  free: 0
-  slot: 5
---- !u!114 &6008977069962219468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6008977069962219462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28866fba5c2ec4b43b75a3b1b8e92a2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amount: 0.2
 --- !u!61 &7734984836562336964
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4990,18 +4988,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.37, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3074289232795930938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6008977069962219462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b2bed567c5019144b4eabebbc0a9b01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 25
-  knockBackForce: 10
-  open: {fileID: 604026357870661726}

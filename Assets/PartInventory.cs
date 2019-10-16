@@ -21,7 +21,7 @@ public class PartInventory : MonoBehaviour
         partsFree = inventorySize - p.Length;
         for(int i = 0; i < p.Length; i++)
         {
-            AddPart(p[i].Slot);
+             AddPart(p[i].Slot);
         }
        
     }

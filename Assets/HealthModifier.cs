@@ -1,12 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-public class HealthModifier : ModifierBase
-{
-    public override void UpdateEntityParameter()
-    {
-        var a = GetComponentInParent<Health>();
-        a?.UpdateMaxHealth();
-    }
-}
+//public class HealthModifier : ModifierBase, IModifier
+//{
+//    public void ApplyModifier()
+//    {
+//        var a = GetComponentInParent<Health>();
+//        a?.UpdateMaxHealth();
+//    }
+//}

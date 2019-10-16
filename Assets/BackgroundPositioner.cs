@@ -22,8 +22,8 @@ public class BackgroundPositioner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var bounds = tilemap.localBounds;
-        
+        Vector2 temp = playerRef.transform.position - tilemap.localBounds.min;
+        temp = new Vector2(Mathf.Abs(temp.x), Mathf.Abs(temp.y));
         gameObject.transform.position = new Vector3
         (
             (playerRef.transform.position.x  / tmWidth)* xMax,

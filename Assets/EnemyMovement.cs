@@ -3,26 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour, IHaveSpeedModifier
+[RequireComponent(typeof(EntityStats))]
+public class EnemyMovement : MonoBehaviour
 {
     private GameObject playerRef;
-    [SerializeField]
-    private float chaseRange = 7.0f;
+    private Vector2 direction;
+
     private EnemyState state = EnemyState.sleep;
 
     private float timer = 0.0f;
     private float dirChangeTime = 3.0f;
-
-    private Vector2 direction;
-
-    [SerializeField]
-    private float baseMoveSpeed = 800.0f;
-    private float moveSpeedModifier = 1.0f;
+    private float chaseRange = 7.0f;
+    [SerializeField] private float baseMoveSpeed = 800.0f;
+    //[SerializeField] private float moveSpeedModifier = 1.0f;
 
     private Rigidbody2D rb;
 
     private GameObject targetItem;
-
+    private EntityStats stats;
+    
     enum EnemyState
     {
         sleep,
@@ -36,21 +35,22 @@ public class EnemyMovement : MonoBehaviour, IHaveSpeedModifier
     {
         playerRef = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
+        stats = GetComponent<EntityBase>().Stats;
     }
 
-    public void UpdateMoveSpeedModifier()
-    {
-        var speedMods = GetComponentsInChildren<SpeedModifier>();
-        moveSpeedModifier = 1.0f;
-        if(speedMods.Length == 0)
-        {
-            return;
-        }
-        for(int i = 0; i < speedMods.Length; i++)
-        {
-            moveSpeedModifier += speedMods[i].Amount;
-        }
-    }
+    //public void UpdateMoveSpeedModifier()
+    //{
+    //    var speedMods = GetComponentsInChildren<SpeedModifier>();
+    //    moveSpeedModifier = 1.0f;
+    //    if(speedMods.Length == 0)
+    //    {
+    //        return;
+    //    }
+    //    for(int i = 0; i < speedMods.Length; i++)
+    //    {
+    //        moveSpeedModifier += speedMods[i].Amount;
+    //    }
+    //}
 
     // Update is called once per frame
     void FixedUpdate()
@@ -141,7 +141,7 @@ public class EnemyMovement : MonoBehaviour, IHaveSpeedModifier
                 break;
                 //if( vector)
         }
-        rb.AddForce(direction  * Time.deltaTime * baseMoveSpeed * moveSpeedModifier, ForceMode2D.Force);
+        rb.AddForce(direction  * Time.deltaTime * baseMoveSpeed * (1.0f + stats.BonusMoveSpeed), ForceMode2D.Force);
     }
 
 }

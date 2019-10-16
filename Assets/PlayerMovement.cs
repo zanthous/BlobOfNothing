@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour, IHaveSpeedModifier
+public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
 
@@ -24,22 +24,22 @@ public class PlayerMovement : MonoBehaviour, IHaveSpeedModifier
         if(!player.Dead)
         {
             rb.AddForce(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized
-                * Time.deltaTime * baseMoveSpeed * moveSpeedModifier
+                * Time.deltaTime * baseMoveSpeed * (1.0f + player.Stats.BonusMoveSpeed)
                 , ForceMode2D.Force);
         }
     }
 
-    public void UpdateMoveSpeedModifier()
-    {
-        var speedMods = GetComponentsInChildren<SpeedModifier>();
-        moveSpeedModifier = 1.0f;
-        if(speedMods.Length == 0)
-        {
-            return;
-        }
-        for(int i = 0; i < speedMods.Length; i++)
-        {
-            moveSpeedModifier += speedMods[i].Amount;
-        }
-    }
+    //public void UpdateMoveSpeedModifier()
+    //{
+    //    var speedMods = GetComponentsInChildren<SpeedModifier>();
+    //    moveSpeedModifier = 1.0f;
+    //    if(speedMods.Length == 0)
+    //    {
+    //        return;
+    //    }
+    //    for(int i = 0; i < speedMods.Length; i++)
+    //    {
+    //        moveSpeedModifier += speedMods[i].Amount;
+    //    }
+    //}
 }

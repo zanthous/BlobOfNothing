@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDie
+public class Enemy : EntityBase, IDie
 {
     private Animator animator;
+    
+    private void Awake()
+    {
+        base.Init();
+    }
 
     void Start()
     {
         animator = GetComponent<Animator>();
     }
     
-    void Update()
-    {
-        
-    }
-
     public void Die()
     {
         animator.SetBool("Dead", true);

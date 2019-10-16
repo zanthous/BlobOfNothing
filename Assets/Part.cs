@@ -41,7 +41,10 @@ public class Part : MonoBehaviour
     //Ordered by slot index
     private float[] slotAngles = { 0,45,90,135,180,-135,-90,-45 };
 
-    
+    private Modifier modifier;
+    private EntityStats stats;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +54,7 @@ public class Part : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         player = playerRef.GetComponent<Player>();
         collider = GetComponent<BoxCollider2D>();
+        modifier = GetComponent<Modifier>();
         if(!free)
         { 
             ps.Stop();
@@ -61,7 +65,10 @@ public class Part : MonoBehaviour
             collider.enabled = false;
         }
         if(transform.parent != null)
+        { 
             target = transform.parent.gameObject;
+            stats = target.GetComponent<EntityBase>()?.Stats;
+        }
 
         scaleFactor = (sprite.sprite.rect.height / 16.0f) * .25f + .75f;
     }
@@ -86,6 +93,7 @@ public class Part : MonoBehaviour
                 if(Vector2.Distance(transform.position, EnemyManager.Instance.enemies[i].transform.position) < startOrbitDistance)
                 {
                     target = EnemyManager.Instance.enemies[i];
+                    stats = target.GetComponent<EntityBase>()?.Stats;
                     var tempSlot = target.GetComponent<PartInventory>().FirstFree();
                     if(tempSlot!=-1)
                     {
@@ -119,6 +127,7 @@ public class Part : MonoBehaviour
             if(Vector2.Distance(playerRef.transform.position, transform.position) < startOrbitDistance)
             {
                 target = playerRef;
+                stats = target.GetComponent<EntityBase>()?.Stats;
                 var tempSlot = target.GetComponent<PartInventory>().FirstFree();
                 if(target.GetComponent<PartInventory>().SpaceFree())
                 {
@@ -198,7 +207,9 @@ public class Part : MonoBehaviour
         orbiting = false;
         player.PartOrbiting = false;
         transform.parent = target.transform;
-        GetComponent<ModifierBase>()?.UpdateEntityParameter();
+        //foreach todo
+        if(modifier!=null)
+            stats.AddStat(modifier);
     }
 
     private void MouseOver()
@@ -246,7 +257,8 @@ public class Part : MonoBehaviour
         {
             target.GetComponent<PartInventory>().RemovePart(slot);
         }
-        GetComponent<ModifierBase>()?.UpdateEntityParameter();
+        if(modifier != null)
+            stats.RemoveStat(modifier);
         ps.Play();
         sprite.color = Color.white;
         //player
@@ -270,7 +282,8 @@ public class Part : MonoBehaviour
         {
             target.GetComponent<PartInventory>().RemovePart(slot);
         }
-        GetComponent<ModifierBase>()?.UpdateEntityParameter();
+        if(modifier != null)
+            stats.RemoveStat(modifier);
         //ps.Play();
         sprite.color = Color.white;
         //player
