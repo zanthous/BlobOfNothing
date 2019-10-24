@@ -17,9 +17,10 @@ public class EntityStats
     public float BonusMaxHealth { get => bonusMaxHealth; set => bonusMaxHealth = value; }
     public float BonusMoveSpeed { get => bonusMoveSpeed; set => bonusMoveSpeed = value; }
 
-    public EntityStats()
+    public EntityStats(Modifier[] modifiers_in)
     {
         modifiers = new List<Modifier>();
+        modifiers.AddRange(modifiers_in);
         InitializeStats();
     }
 

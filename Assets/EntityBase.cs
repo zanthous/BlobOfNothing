@@ -9,6 +9,6 @@ public class EntityBase : MonoBehaviour
 
     protected void Init()
     {
-        stats = new EntityStats();
+        stats = new EntityStats(GetComponentsInChildren<Modifier>());
     }
 }
