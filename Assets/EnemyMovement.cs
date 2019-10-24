@@ -36,23 +36,8 @@ public class EnemyMovement : MonoBehaviour
         playerRef = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         stats = GetComponent<EntityBase>().Stats;
-    }
+    }   
 
-    //public void UpdateMoveSpeedModifier()
-    //{
-    //    var speedMods = GetComponentsInChildren<SpeedModifier>();
-    //    moveSpeedModifier = 1.0f;
-    //    if(speedMods.Length == 0)
-    //    {
-    //        return;
-    //    }
-    //    for(int i = 0; i < speedMods.Length; i++)
-    //    {
-    //        moveSpeedModifier += speedMods[i].Amount;
-    //    }
-    //}
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         float distanceToItem = float.MaxValue;

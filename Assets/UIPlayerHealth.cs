@@ -5,12 +5,10 @@ using UnityEngine.UI;
 
 public class UIPlayerHealth : MonoBehaviour
 {
-    private Image image;
+    [SerializeField] private Health playerHealth;
+    [SerializeField] private Text text;
 
-    [SerializeField]
-    private Health playerHealth;
-    [SerializeField]
-    private Text text;
+    private Image image;
 
     private void Start()
     {

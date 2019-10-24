@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    
-    private bool activated = false;
+    [SerializeField] private Sprite activeSprite;
+    [SerializeField] private AudioSource checkpoint;
 
     private Player player;
     private SpriteRenderer sr;
     
-    [SerializeField] private Sprite activeSprite;
-    [SerializeField] private AudioSource checkpoint;
+    private bool activated = false;
+
     
     private void Start()
     {

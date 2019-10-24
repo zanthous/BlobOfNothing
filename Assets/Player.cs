@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Player : EntityBase, IDie
 {
+    private GameObject lastCheckpoint;
+    public GameObject LastCheckpoint { get => lastCheckpoint; set => lastCheckpoint = value; }
+
     private bool partOrbiting = false;
     public bool PartOrbiting
     {
@@ -20,20 +23,17 @@ public class Player : EntityBase, IDie
             partOrbiting = value;
         }
     }
-
-
+    
     private bool dead = false;
     public bool Dead { get => dead; set => dead = value; }
 
-    private GameObject lastCheckpoint;
-    public GameObject LastCheckpoint { get => lastCheckpoint; set => lastCheckpoint = value; }
-    public int NStars { get => nStars; set => nStars = value; }
 
     private int nStars = 0;
-
-    private Animator animator;
+    public int NStars { get => nStars; set => nStars = value; }
+    
     private float respawnTimer = 2.0f;
 
+    private Animator animator;
     private Health health;
     
     [SerializeField] private AudioSource pickup;
@@ -42,18 +42,11 @@ public class Player : EntityBase, IDie
     {
         base.Init();
     }
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         animator = GetComponent<Animator>();
         health = GetComponent<Health>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void Die()

@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class Needle : MonoBehaviour
 {
-    private float shootForce = 15.0f;
+    private GameObject owner;
     private Part part;
+    private float shootForce = 15.0f;
     private float shootRange = 4.0f;
     private bool hasShot = false;
     private float damage = 40.0f;
     private float knockBackForce = 10.0f;
-
+    
     private void Awake()
     {
         part = GetComponent<Part>();
@@ -28,6 +29,7 @@ public class Needle : MonoBehaviour
             {
                 if(hit.transform.tag == "Player")
                 {
+                    owner = transform.parent.gameObject;
                     Shoot();
                 }
             }
@@ -36,6 +38,7 @@ public class Needle : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.Space))
             {
+                owner = transform.parent.gameObject;
                 Shoot();
             }
         }
@@ -59,6 +62,9 @@ public class Needle : MonoBehaviour
     {
         if(!hasShot)
             return;
+        //Entity that shot this should not get hit by it
+        if(collision.gameObject == owner)
+            return;
 
         Collider2D c = collision.contacts[0].collider;
 
@@ -71,6 +77,7 @@ public class Needle : MonoBehaviour
             h.ChangeHealth(-damage);
             rb.AddForce((c.transform.position - transform.position).normalized * knockBackForce, ForceMode2D.Impulse);
         }
+        //TODO
         //else
         //{
         //    var p = c.gameObject.GetComponent<Part>();

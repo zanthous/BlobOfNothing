@@ -5,15 +5,14 @@ using UnityEngine;
 
 public class PartInventory : MonoBehaviour
 {
+    [SerializeField] private AudioSource attach;
+    [SerializeField] private AudioSource detach;
+
     //false is empty
     private const int inventorySize = 8;
     private bool[] parts = new bool[inventorySize];
     private int partsFree;
-
-
-    [SerializeField] private AudioSource attach;
-    [SerializeField] private AudioSource detach;
-
+    
     // Start is called before the first frame update
     void Start()
     {

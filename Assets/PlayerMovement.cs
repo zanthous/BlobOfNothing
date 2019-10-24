@@ -5,20 +5,17 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-
-    [SerializeField]
-    private float baseMoveSpeed = 800.0f;
-    private float moveSpeedModifier = 1.0f;
     private Player player;
-    // Start is called before the first frame update
+    
+    [SerializeField] float baseMoveSpeed = 800.0f;
+    private float moveSpeedModifier = 1.0f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GetComponent<Player>();
     }
-
-    // Update is called once per frame
-
+    
     void FixedUpdate()
     {
         if(!player.Dead)
@@ -28,18 +25,4 @@ public class PlayerMovement : MonoBehaviour
                 , ForceMode2D.Force);
         }
     }
-
-    //public void UpdateMoveSpeedModifier()
-    //{
-    //    var speedMods = GetComponentsInChildren<SpeedModifier>();
-    //    moveSpeedModifier = 1.0f;
-    //    if(speedMods.Length == 0)
-    //    {
-    //        return;
-    //    }
-    //    for(int i = 0; i < speedMods.Length; i++)
-    //    {
-    //        moveSpeedModifier += speedMods[i].Amount;
-    //    }
-    //}
 }

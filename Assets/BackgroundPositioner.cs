@@ -5,13 +5,13 @@ using UnityEngine.Tilemaps;
 
 public class BackgroundPositioner : MonoBehaviour
 {
+    [SerializeField] private Tilemap tilemap;
     private GameObject playerRef;
-    [SerializeField]
-    private Tilemap tilemap;
     private float xMax = 5.0f;
     private float yMax = 5.0f;
     private float tmWidth;
     private float tmHeight;
+
     void Start()
     {
         playerRef = GameObject.FindGameObjectWithTag("Player");

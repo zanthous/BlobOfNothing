@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+
+    [SerializeField] private AudioSource hurt;
+    //ref to stats that the entity this is attached to
+    private EntityStats stats;
+
     [SerializeField] private float baseMaxHealth = 100.0f;
 
     private float currentHealth = 100.0f;
@@ -13,10 +18,6 @@ public class Health : MonoBehaviour
     //min time before an entity can take damage again after being damaged
     private float damageInterval = .2f;
     private float timer;
-    
-    [SerializeField] private AudioSource hurt;
-
-    private EntityStats stats;
 
     private void Start()
     {
@@ -48,21 +49,7 @@ public class Health : MonoBehaviour
             GetComponent<IDie>().Die();
         }
         return currentHealth;
-    }
-
-    //public void UpdateMaxHealth()
-    //{
-    //    var healthMods = GetComponentsInChildren<HealthModifier>();
-    //    maxHealth = defaultMaxHealth;
-    //    if(healthMods.Length == 0)
-    //    {
-    //        return;
-    //    }
-    //    for(int i = 0; i < healthMods.Length; i++)
-    //    {
-    //        maxHealth += healthMods[i].Amount;
-    //    }
-    //}
+    } 
 
     public void RestoreToMax()
     {
